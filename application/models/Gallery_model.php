@@ -49,12 +49,17 @@ class Gallery_model extends CI_Model
 
         foreach ($query->result() as $row) { //การปั้น array
 
-            // strMonthThai;
-            $result[] = array(
-                "id" => $row->id,
-                "name" => $row->title,
-                "image" => $row->img
-            );
+            $ContDateleft = getDateEndInt($row->enddate);
+
+
+            if ($ContDateleft >= 0) {
+                // strMonthThai;
+                $result[] = array(
+                    "id" => $row->id,
+                    "name" => $row->title,
+                    "image" => $row->img
+                );
+            }
         }
 
 

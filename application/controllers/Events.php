@@ -42,7 +42,7 @@ class Events extends MY_Controller
         $type = $this->input->post('type');
         $month = $this->input->post('month');
 
-        $data = $this->Event_model->geteventsApi($title, $type, $month);
+        $data = $this->Event_model->getData($title, $type, $month);
         $this->output->set_content_type('application/json')->set_output(json_encode($data));
     }
 

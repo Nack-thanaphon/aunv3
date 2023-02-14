@@ -72,7 +72,7 @@ class News_model extends CI_Model
             $this->db->where('p.p_type_id', $type);
         }
         if (!empty($month)) {
-            $this->db->like('p.p_date', $month);
+            $this->db->like('p.p_created_at', $month);
         }
 
         $this->db->order_by("p.id", "desc");
@@ -105,6 +105,7 @@ class News_model extends CI_Model
 
             $result[] = array(
                 "month" => $month,
+                "monthValue" => $Yearmonth,
                 "monthData" => $monthData,
                 "id" => $row->id,
             );

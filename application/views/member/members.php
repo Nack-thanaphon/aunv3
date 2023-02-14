@@ -37,8 +37,8 @@
     <div class="row my-5 m-1 p-0">
         <div class="col-sm-4 d-flex justify-items-end col-12 mb-3 m-0 p-0">
             <div class="btn-group nav nav-pills" role="group" aria-label="Basic example">
-                <button type="button" class="btn btn-danger" id="v-pills-home-tab" data-bs-toggle="pill" data-bs-target="#v-pills-home" type="button" role="tab" aria-controls="v-pills-home" aria-selected="true"> <small> <i class="fas fa-person"></i> CORE MEMBERS</small></button>
-                <button type="button" class="btn btn" id="v-pills-profile-tab" data-bs-toggle="pill" data-bs-target="#v-pills-profile" type="button" role="tab" aria-controls="v-pills-profile" aria-selected="false"><small> <i class="fas fa-person"></i> ASSOCIATED MEMBERS </small></button>
+                <button type="button" class="btn btn-danger" id="v-pills-home-tab" data-bs-toggle="pill" data-bs-target="#v-pills-home" type="button" role="tab" aria-controls="v-pills-home" aria-selected="true"> <small class="text-start"> <i class="fas fa-person"></i> CORE MEMBERS</small></button>
+                <button type="button" class="btn btn" id="v-pills-profile-tab" data-bs-toggle="pill" data-bs-target="#v-pills-profile" type="button" role="tab" aria-controls="v-pills-profile" aria-selected="false"><small class="text-start"> <i class="fas fa-person"></i> ASSOCIATED MEMBERS </small></button>
             </div>
         </div>
         <div class="col-sm-12 col-12 tab-content m-0 p-0" id="v-pills-tabContent">

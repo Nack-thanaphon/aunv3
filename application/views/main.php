@@ -18,7 +18,7 @@
                     <?php if (!empty($banner)) { ?>
                         <?php foreach ($banner as  $key => $row) : ?>
                             <div type="button" onclick="getBannerDetail(<?= $row['id'] ?>)" class="carousel-item item <?= ($key == 0) ? "active" : "" ?>">
-                                <img class="d-block w-100" style="object-fit: cover;" src="<?= renderImg($row['image']) ?>" alt="<?= $row['name'] ?>">
+                                <img class="d-block w-100" style="object-fit: cover;" src="<?= $this->Helper_model->renderImg($row['image']) ?>" alt="<?= $row['name'] ?>">
                             </div>
                         <?php endforeach; ?>
                     <?php } else { ?>
@@ -64,7 +64,7 @@
             </div>
         </div>
     </div> -->
-    <div class=" m-0 p-0 my-3 ">
+    <div class=" m-0 p-0 my-3">
         <div class="row  m-0 p-0">
             <div class="col-12 col-sm-8 m-0 my-3 p-0">
                 <div class="row m-0 p-0 ">
@@ -75,28 +75,25 @@
                         <!-- <i class="fa-solid fa-angles-right text-muted my-auto"></i> -->
                     </div>
 
-
-                    <?php if (!empty($news)) { ?>
-                        <?php foreach ($news as $row) : ?>
-                            <div class="col-sm-4 col-12  m-0 p-0 mb-3">
-                                <div class="m-1  p-2 shadow-sm ">
-                                    <img class="card-img-top" src="<?= renderImg($row->image) ?>" style="width:100%;height: 190px; object-fit:cover;" alt="Card image cap">
-                                    <div class=" m-0 p-0 mt-2">
-                                        <a href="<?= base_url('posts/' . $row->id . '/' . $row->title) ?>" class="text-decoration-none text-reset text-decoration-none">
-                                            <p class="card-title text-truncate text-danger"><?= $row->title ?></p>
-                                        </a>
-                                        <div class="mb-4"></div>
-                                        <div class="d-flex justify-content-between text-muted">
-                                            <small><?= $row->date  ?></small>
-                                            <small><i class="fa-solid fa-eye"></i> <?= number_format($row->view) ?></small>
-                                        </div>
+                    <?php foreach ($news as $row) : ?>
+                        <div class="col-sm-4 col-12  m-0 p-0 mb-3">
+                            <div class="m-1  p-2 shadow-sm ">
+                                <img class="card-img-top" src="<?= renderImg($row->image) ?>" style="width:100%;height: 190px; object-fit:cover;" alt="Card image cap">
+                                <div class=" m-0 p-0 mt-2">
+                                    <a href="<?= base_url('posts/' . $row->id .'/'. $row->title) ?>" class="text-decoration-none text-reset text-decoration-none">
+                                        <h5 class="card-title text-truncate text-danger"><?= $row->title ?></h5>
+                                    </a>
+                                    <div class="mb-4"></div>
+                                    <div class="d-flex justify-content-between text-muted">
+                                        <small><?= $row->date  ?></small>
+                                        <small><i class="fa-solid fa-eye"></i> <?= number_format($row->view) ?></small>
                                     </div>
                                 </div>
                             </div>
-                        <?php endforeach;  ?>
-                    <?php } else { ?>
-                        <p class="text-muted">ไม่มีข้อมูล</p>
-                    <?php } ?>
+                        </div>
+                    <?php endforeach;  ?>
+
+
                 </div>
             </div>
             <div class="col-12 col-sm-4 m-0 my-3 p-0">
@@ -110,24 +107,20 @@
                     <div class="col-sm-12 col-12    m-0 p-0 ">
                         <div class="m-1  p-0">
                             <div class="row m-0 p-0 ">
-                                <?php if (!empty($event)) { ?>
-                                    <?php foreach ($event as $row) : ?>
-                                        <div class="col-sm-12 col-12  m-0 p-0 mb-3">
-                                            <div class="m-1  p-3 bg-white shadow-sm h-100 rounded-2">
-                                                <div class="d-flex justify-content-between m-0 p-0">
-                                                    <div class="mb-1 col-12">
-                                                        <!-- <small class="text-muted">เรื่อง</small><br> -->
-                                                        <p class="m-0 p-0 text-truncate  text-danger"><?= $row['title'] ?></p>
-                                                        <small class="text-muted"><i class="fas fa-location-dot text-danger"></i> <span><?= $row['address'] ?></span></small><br>
-                                                        <small class="text-muted"><i class="fas fa-calendar text-muted"></i> <?= $row['date'] ?></small>
-                                                    </div>
+                                <?php foreach ($event as $row) : ?>
+                                    <div class="col-sm-12 col-12  m-0 p-0 mb-3">
+                                        <div class="m-1  p-3 bg-white shadow-sm h-100 rounded-2">
+                                            <div class="d-flex justify-content-between m-0 p-0">
+                                                <div class="mb-1 col-12">
+                                                    <!-- <small class="text-muted">เรื่อง</small><br> -->
+                                                    <p class="m-0 p-0 text-truncate  text-danger"><?= $row['title'] ?></p>
+                                                    <small class="text-muted"><i class="fas fa-location-dot text-danger"></i> <span><?= $row['address'] ?></span></small><br>
+                                                    <small class="text-muted"><i class="fas fa-calendar text-muted"></i> <?= $row['date'] ?></small>
                                                 </div>
                                             </div>
                                         </div>
-                                    <?php endforeach; ?>
-                                <?php } else { ?>
-                                    <p class="text-muted">ไม่มีข้อมูล</p>
-                                <?php } ?>
+                                    </div>
+                                <?php endforeach; ?>
                             </div>
                         </div>
                     </div>
@@ -144,26 +137,22 @@
                         </a>
                         <!-- <i class="fa-solid fa-angles-right text-muted my-auto"></i> -->
                     </div>
-                    <?php if (!empty($download)) { ?>
-                        <?php foreach ($download as $row) : ?>
-                            <div class="col-sm-12 col-12  m-0 p-0 mb-3">
-                                <div class="m-1  p-2   h-100 rounded-2">
-                                    <div class="shadow-sm rounded-2">
-                                        <div class="card-header my-2 bg-danger text-white">
-                                            <small class=""><?= $row['group'] ?></small>
-                                            <h4 class="m-0 p-0 "><?= $row['name'] ?></h4>
-                                        </div>
-                                        <div class="p-2">
-                                            <small class="text-muted"><i class="fa-solid fa-clock"></i> <?= $row['date'] ?></small> <br>
-                                            <small class="text-danger"><a class="text-reset text-decoration-none" href="<?= renderImg($row['file']) ?>"><i class="fas fa-circle-down"></i> ดาวน์โหลด</a></small>
-                                        </div>
+                    <?php foreach ($download as $row) : ?>
+                        <div class="col-sm-12 col-12  m-0 p-0 mb-3">
+                            <div class="m-1  p-2   h-100 rounded-2">
+                                <div class="shadow-sm rounded-2">
+                                    <div class="card-header my-2 bg-danger text-white">
+                                        <small class=""><?= $row['group'] ?></small>
+                                        <h4 class="m-0 p-0 "><?= $row['name'] ?></h4>
+                                    </div>
+                                    <div class="p-2">
+                                        <small class="text-muted"><i class="fa-solid fa-clock"></i> <?= $row['date'] ?></small> <br>
+                                        <small class="text-danger"><a class="text-reset text-decoration-none" href="<?= $this->Helper_model->renderImg($row['file']) ?>"><i class="fas fa-circle-down"></i> ดาวน์โหลด</a></small>
                                     </div>
                                 </div>
                             </div>
-                        <?php endforeach; ?>
-                    <?php } else { ?>
-                        <p class="text-muted">ไม่มีข้อมูล</p>
-                    <?php } ?>
+                        </div>
+                    <?php endforeach; ?>
                 </div>
             </div>
             <div class="col-12 col-sm-4 m-0 my-3 p-0 ">
@@ -193,9 +182,9 @@
 
 
 <script>
-    var BASE_URL = "<?= base_url(); ?>"
-
     function getBannerDetail(bid) {
+
+
         $.ajax({
             type: "post",
             dataType: "json",
@@ -208,7 +197,7 @@
                 let img = data.img
                 let link = data.link
                 let html = ''
-                html += `<img class="w-100" src="<?= renderImg('${img}') ?>" alt="">
+                html += `<img class="w-100" src="<?= $this->Helper_model->renderImg('${img}') ?>" alt="">
                     <hr>
                     <p class="m-0 p-0 text-muted">หัวข้อ : <span class="text-dark">${data.title}</span></p>
                     <p class="m-0 p-0 text-muted my-3">รายละเอียด <br>

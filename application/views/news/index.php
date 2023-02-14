@@ -1,5 +1,4 @@
 <style>
-    @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Thai&display=swap');
 
     .special {
         overflow: hidden;
@@ -7,12 +6,7 @@
         text-overflow: ellipsis;
     }
 
-    p,
-    h5,
-    h6,
-    a {
-        font-family: 'Noto Sans Thai', sans-serif !important;
-    }
+   
 
     .list-item {
         cursor: pointer;
@@ -37,7 +31,7 @@
     <img class="header-img" src="https://www.mitihoon.com/wp-content/uploads/2017/11/bg-footer-mitihoon.jpg" alt="">
 </div>
 
-<div class="container ">
+<div class="container">
     <div class="row m-0 p-0">
         <div class="col-12 p-sm-5  m-0 p-0">
             <div class="row m-0 p-0 my-2">
@@ -98,7 +92,7 @@
                 let img = data[i].image
                 renderObj +=
                     `
-                <div class="col-6 col-sm-4 m-0 p-0 mb-1  ">
+                <div class="col-12 col-sm-4 m-0 p-0 mb-1  ">
                         <a href="${BASE_URL+"posts/"+ data[i].id + "/" +data[i].title}" class=" text-reset text-decoration-none ">
                         <div class="shadow-sm m-1">
                         <img src="<?= renderImg('${img}') ?>" class="w-100" style="height: 150px;object-fit: cover;" alt="...">

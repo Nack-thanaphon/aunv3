@@ -89,6 +89,7 @@ class Download_model extends CI_Model
             // print_r($month);
 
             $result[] = array(
+                "monthValue" => $Yearmonth,
                 "month" => $month,
                 "monthData" => $monthData,
                 "id" => $row->id,

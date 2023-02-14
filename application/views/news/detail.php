@@ -1,21 +1,23 @@
 <style>
-    .detail-news h1,
-    .detail-news h2,
-    .detail-news h3,
-    .detail-news h4,
-    .detail-news h5 {
-        text-align: justify !important;
-        word-spacing: -4px !important;
-        font-size: 1.5rem;
-        font-weight: 300 !important;
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Thai&display=swap');
+
+    .special {
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
     }
 
-    .detail-news p {
-        text-align: justify !important;
-        word-spacing: -4px !important;
-        line-height: 2.2rem;
-        font-size: 1.2rem;
-        font-weight: 300 !important;
+    p,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    small,
+    span,
+    a {
+        font-family: 'Noto Sans Thai', sans-serif !important;
     }
 
     .list-item {
@@ -31,10 +33,9 @@
 
 <div class="container">
     <?php foreach ($news as $row) { ?>
-        <div class="row m-0 p-0">
-
+        <div class="row m-0 p-0" onclick="countStat('news','counter',<?= $row['id'] ?>,'p_views','posts')">
             <div class="col-12 m-0 p-0 d-sm-block d-none">
-                <img src="<?= renderImg($row['cover']) ?>" class="w-100" alt="">
+                <img src="<?= $this->Helper_model->renderImg($row['cover']) ?>" class="w-100" alt="">
             </div>
             <div class="col-sm-8 col-12 m-0 p-0 mt-3">
                 <b class="badge rounded-pill bg-danger"><?= $row['type'] ?></b>
@@ -67,17 +68,17 @@
                         </div>
                     </div>
                 </div>
-                <img src="<?= renderImg($row['cover']) ?>" class="w-100" alt="">
+                <img src="<?= $this->Helper_model->renderImg($row['cover']) ?>" class="w-100" alt="">
                 <div id="share-bar" class="p-0 p-sm-3"></div>
-                <section class=" my-4 detail-news">
-                    <?= $row['detail'] ?>
-                </section>
+                <div class="my-4  mx-auto ">
+                    <h5 class="text-reset" style="line-height: 35px;"><?= $row['detail'] ?></h5>
+                </div>
 
                 <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
                     <div class="carousel-inner">
                         <?php foreach ($row['image'] as $key => $image) { ?>
                             <div class="carousel-item  <?= ($key == 0) ? 'active' : '' ?>">
-                                <img src="<?= renderImg($image) ?>" class="d-block w-100" alt="...">
+                                <img src="<?= $this->Helper_model->renderImg($image) ?>" class="d-block w-100" alt="...">
                             </div>
                         <?php } ?>
                     </div>
@@ -103,24 +104,20 @@
                         </div>
                         <div class="modal-body">
                             <div class="row m-0 p-0">
-                                <?php if (!empty($row['image'])) { ?>
-                                    <?php foreach ($row['image'] as $key => $image) { ?>
-                                        <div class="col-4">
-                                            <a class="fancybox" data-fancybox="gallery" href="<?= renderImg($image) ?>">
-                                                <img src="<?= renderImg($image) ?>" class="d-block w-100" alt="...">
-                                            </a>
-                                        </div>
-                                    <?php } ?>
-                                <?php } else { ?>
-                                    <p class="text-muted">ไม่พบข้อมูล</p>
-                                <?php }; ?>
+                                <?php foreach ($row['image'] as $key => $image) { ?>
+                                    <div class="col-4">
+                                        <a class="fancybox" data-fancybox="gallery" href="<?= $this->Helper_model->renderImg($image) ?>">
+                                            <img src="<?= $this->Helper_model->renderImg($image) ?>" class="d-block w-100" alt="...">
+                                        </a>
+                                    </div>
+                                <?php } ?>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         <?php } ?>
-        <?php $this->load->view('layout/aside'); ?>
+        <?php $this->load->view('includes/aside'); ?>
         </div>
 </div>
 
@@ -128,16 +125,11 @@
 
 
 <script>
-    $(document).ready(function() {
-        let id = $('#news_id').val()
-        countStat('news', 'counter', id, 'p_views', 'posts');
-    })
-
-    function countStat(controller, func, id, name, table) {
-
+    function countStat(controller, func, id, name = null, table) {
         let BASE_URL = "<?= base_url() ?>"
         $.ajax({
             type: "post",
+            contentType: "application/json; charset=utf-8",
             dataType: "json",
             url: BASE_URL + 'Helper/counter',
             data: {
